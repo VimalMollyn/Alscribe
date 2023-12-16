@@ -42,15 +42,15 @@ textInput.addEventListener('input', function() {
     localStorage.setItem('text', text);
 });
 
-// const apiKey = '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'; // Replace with your actual API key
 // get the api key from a local file 
 var apiKey = '';
 fetch("api_key.txt")
   .then((res) => res.text())
   .then((text) => {
     console.log(text);
+    // remove the newline character
     apiKey = text.trim();
-    // do something with "text"
+    // remove the newline character
    })
   .catch((e) => console.error(e));
 
@@ -68,7 +68,8 @@ async function sendGPTRequest () {
     console.log('Done typing.');
     console.log('Sending to GPT-3...');
     const data = {
-      model: 'gpt-4-1106-preview',
+      // model: 'gpt-4-1106-preview',
+      model: 'gpt-3.5-turbo-1106',
       messages: [
           {"role": "system", "content": "You are a writing assistant. Your task is to finish the sentence. You might need to add a space at the beginning."},
           {"role": "user", "content": textInput.innerText}
@@ -128,7 +129,7 @@ textInput.addEventListener('input', () => {
     gptTimer = setTimeout(() => {
         sendGPTRequest();
         // Display suggestions in autocompleteDiv
-    }, 200); // 500 ms delay after user stops typing
+    }, 500); // 500 ms delay after user stops typing
 });
 
 function updateAutocompletePosition() {
