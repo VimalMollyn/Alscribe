@@ -1,6 +1,8 @@
 # Alscribe
 ![Main page of the tool](app.png)
 
+Try it out! [https://vimalmollyn.com/alscribe](https://vimalmollyn.com/alscribe)
+
 Minimal, hackable, GPT powered text editor. Really really really barebones. Tab to complete. 
 
 ### 1. Add your api key to `api_key.txt`

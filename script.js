@@ -43,18 +43,20 @@ textInput.addEventListener('input', function() {
 });
 
 // get the api key from a local file 
-var apiKey = '';
-fetch("api_key.txt")
-  .then((res) => res.text())
-  .then((text) => {
-    console.log(text);
-    // remove the newline character
-    apiKey = text.trim();
-    // remove the newline character
-   })
-  .catch((e) => console.error(e));
+// var apiKey = '';
+// fetch("api_key.txt")
+//   .then((res) => res.text())
+//   .then((text) => {
+//     console.log(text);
+//     // remove the newline character
+//     apiKey = text.trim();
+//     // remove the newline character
+//    })
+//   .catch((e) => console.error(e));
 
-const apiUrl = 'https://api.openai.com/v1/chat/completions'; // Adjust the engine if needed
+// const apiUrl = 'https://api.openai.com/v1/chat/completions'; // Adjust the engine if needed
+const apiUrl = 'https://openrouter.ai/api/v1/chat/completions'
+const apiKey = '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'
 
 const headers = {
   'Content-Type': 'application/json',
@@ -69,7 +71,7 @@ async function sendGPTRequest () {
     console.log('Sending to GPT-3...');
     const data = {
       // model: 'gpt-4-1106-preview',
-      model: 'gpt-3.5-turbo-1106',
+      // model: 'mistralai/mixtral-8x7b-instruct',
       messages: [
           {"role": "system", "content": "You are a writing assistant. Your task is to finish the sentence. You might need to add a space at the beginning."},
           {"role": "user", "content": textInput.innerText}
@@ -112,6 +114,20 @@ async function sendGPTRequest () {
         // Handle any errors here
         console.error('Error:', error);
       });
+      // fetch("", {
+      //   method: "POST",
+      //   headers: {
+      //     "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
+      //     "Content-Type": "application/json"
+      //   },
+      //   // body: JSON.stringify({
+      //   //   "model": "mistralai/mixtral-8x7b-instruct", // Optional (user controls the default),
+      //   //   "messages": [
+      //   //     {"role": "user", "content": "What is the meaning of life?"},
+      //   //   ]
+      //   // })
+      //   body: JSON.stringify(data)
+      // });
 }
 
 // everytime the user clicks a button, send a request to the server 
